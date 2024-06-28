@@ -126,3 +126,12 @@ resource "aws_security_group" "two_tier_rds_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
+
+resource "aws_db_subnet_group" "rds_subnet_group" {
+  count       = "${var.private_subnet_count}"
+  name        = "${var.resource_name}-rds-subnet-group"
+  subnet_ids  = ["${aws_subnet.two_tier_private_subnet[0].id}", "${aws_subnet.two_tier_private_subnet[2].id}"]
+  tags = {
+    "Name" = "SubnetGroupRDS"
+  }
+}
