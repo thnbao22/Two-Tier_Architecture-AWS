@@ -16,3 +16,6 @@ output "elb_sg_id" {
 output "rds_sg_id" {
   value = aws_security_group.two_tier_rds_sg.id
 }
+output "db_subnet_group_name" {
+  value = aws_db_subnet_group.rds_subnet_group.name
+}
