@@ -110,19 +110,19 @@ resource "aws_security_group" "two_tier_asg_sg" {
 
 # Security Group for RDS
 resource "aws_security_group" "two_tier_rds_sg" {
-  vpc_id = "${aws_vpc.two_tier_vpc.id}"
-  name = "${var.resource_name}-rds-sg"
-  description = "Allow inbound traffic from ASG on PostgreSQL port"
+  vpc_id        = "${aws_vpc.two_tier_vpc.id}"
+  name          = "${var.resource_name}-rds-sg"
+  description   = "Allow inbound traffic from ASG on PostgreSQL port"
   ingress {
-    from_port = "${var.postgre_port}"
-    to_port = "${var.postgre_port}"
-    protocol = "tcp"
+    from_port       = "${var.postgre_port}"
+    to_port         = "${var.postgre_port}"
+    protocol        = "tcp"
     security_groups = ["${aws_security_group.two_tier_asg_sg.id}"]
   }
   egress {
-    from_port = 0
-    to_port = 0
-    protocol = "-1"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
