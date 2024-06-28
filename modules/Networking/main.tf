@@ -15,7 +15,7 @@ resource "aws_internet_gateway" "two_tier_igw" {
 }
 
 data "aws_availability_zones" "available" {
-  
+  state = "available"
 }
 # Two Public Subnets
 resource "aws_subnet" "two_tier_public_subnet" {
@@ -128,9 +128,8 @@ resource "aws_security_group" "two_tier_rds_sg" {
 }
 
 resource "aws_db_subnet_group" "rds_subnet_group" {
-  count       = "${var.private_subnet_count}"
   name        = "${var.resource_name}-rds-subnet-group"
-  subnet_ids  = ["${aws_subnet.two_tier_private_subnet[0].id}", "${aws_subnet.two_tier_private_subnet[2].id}"]
+  subnet_ids  = [for subnet in aws_subnet.two_tier_private_subnet : subnet.id]
   tags = {
     "Name" = "SubnetGroupRDS"
   }
