@@ -14,7 +14,7 @@ resource "aws_lb_target_group" "two_tier_tg" {
 }
 
 resource "aws_lb_listener" "two_tier_lb_listener" {
-  load_balancer_arn = aws_lb.two_tier_lb.arn
+  load_balancer_arn = "${aws_lb.two_tier_lb.arn}"
   port              = "${var.http_port}"
   protocol          = "${var.protocol}"
   default_action {
