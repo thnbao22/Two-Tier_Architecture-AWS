@@ -7,7 +7,8 @@ resource "aws_db_instance" "two_tier_rds_postgre" {
   instance_class                = var.db_instance_class
   db_subnet_group_name          = var.db_subnet_group_name
   port                          = var.db_port
-  manage_master_user_password   = true
   multi_az                      = true
   skip_final_snapshot           = true
+  username                      = "${var.username}-db-rds"
+  password                      = "@-${var.password}-@" 
 }

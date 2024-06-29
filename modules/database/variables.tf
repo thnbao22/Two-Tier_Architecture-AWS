@@ -19,3 +19,9 @@ variable "db_instance_class" {
 variable "db_port" {
   
 }
+variable "username" {
+  
+}
+variable "password" {
+  
+}
