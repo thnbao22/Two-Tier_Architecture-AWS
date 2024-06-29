@@ -92,7 +92,7 @@ resource "aws_security_group" "two_tier_asg_sg" {
     from_port       = var.http_port
     to_port         = var.http_port
     protocol        = "tcp"
-    security_groups = ["${aws_security_group.two_tier_elb_sg.id}"]
+    security_groups = [aws_security_group.two_tier_elb_sg.id]
   }
   ingress {
     from_port       = var.ssh_port
@@ -117,7 +117,7 @@ resource "aws_security_group" "two_tier_rds_sg" {
     from_port       = var.postgre_port
     to_port         = var.postgre_port
     protocol        = "tcp"
-    security_groups = ["${aws_security_group.two_tier_asg_sg.id}"]
+    security_groups = [aws_security_group.two_tier_asg_sg.id]
   }
   egress {
     from_port   = 0
