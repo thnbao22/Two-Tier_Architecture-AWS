@@ -1,7 +1,8 @@
 locals {
   resource_name = var.resource_name
   instance_type = "t2.micro"
-  http_port = 80
+  http_port     = var.http_port
+  postgre_port  = var.postgre_port
 }
 
 module "Networking" {
@@ -12,7 +13,7 @@ module "Networking" {
   private_subnet_count  = 2
   ssh_port              = 22
   http_port             = local.http_port
-  postgre_port          = 5432
+  postgre_port          = local.postgre_port  
 }
 
 module "Compute" {
@@ -43,6 +44,6 @@ module "Database" {
   db_instance_class     = "db.t2.micro"
   db_port               = 5432
   db_subnet_group_name  = module.Networking.rds_subnet_group_name
-  username              = local.resource_name
-  password              = local.resource_name
+  username              = var.rds_username
+  password              = var.rds_password
 }

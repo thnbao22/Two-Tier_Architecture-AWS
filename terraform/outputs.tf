@@ -9,3 +9,15 @@ output "dynamodb_table_arn" {
   value         = aws_dynamodb_table.terraform_state_lock.arn
   description   = "The ARN of the DynamoDB table used for state locking"
 }
+output "rds_endpoint" {
+  value = module.Database.rds_postgres_endpoint
+}
+output "rds_port" {
+  value = module.Database.rds_postgres_port
+}
+output "rds_username" {
+  value = module.Database.rds_username
+}
+output "rds_password" {
+  value = module.Database.rds_password
+}
