@@ -1,5 +1,5 @@
 locals {
-  resource_name = "two-tier"
+  resource_name = var.resource_name
   instance_type = "t2.micro"
   http_port = 80
 }
