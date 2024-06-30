@@ -1,3 +1,9 @@
+terraform {
+  backend "s3" {
+    key            = "statefile/terraform.tfstate"
+  }
+}
+
 resource "aws_s3_bucket" "backend_s3_bucket" {
   bucket = "tf-${local.resource_name}-backend-bucket-9dsd31"
 
