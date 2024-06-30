@@ -16,8 +16,10 @@ variable "postgre_port" {
 variable "rds_username" {
   description   = "The username for RDS PostgreSQL"
   type          = string
+  sensitive     = true
 }
 variable "rds_password" {
   description   = "The password for RDS PostgreSQL"
   type          = string
+  sensitive     = true
 }
